@@ -41,14 +41,17 @@
             if(user)       // if(uemail===stored_uemail && upass===stored_upass)
             {
                 localStorage.setItem('currentuser',JSON.stringify(user));
-                alert("Login successfully!!!");
+                // alert("Login successfully!!!");
                 let option=confirm("Do you to start exam then click ok..")
                 if(option)
             {
                 window.location.href="examapp.html"
             }
+            else
+            {
                 window.location.href="bankapp.html";
             }
+        }
             else
             {
                 alert("Login Failed.. Please check email or password!!!");
