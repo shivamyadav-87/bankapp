@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankApp|Signup</title>
+</head>
+<body>
+    <center>
+        <h1>Signup Here</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="signin.html">Signin</a>
+        </nav>
+        <hr>
+        <form id="signupform">
+            <input type="text" placeholder="Enter username" id="uname" required>
+            <br>
+            <input type="email" placeholder="Enter email" id="uemail" required>
+            <br>
+            <input type="password" placeholder="Enter password" id="upass" required>
+            <br>
+            <input type="password" placeholder="Enter confirm password" id="ucpass" required>
+            <br><br>
+            <input type="submit" value="Submit">
+            <input type="reset" value="Clear">
+            <a href="index.html"><input type="button" value="Cancel"></a>
+        </form>
+    </center>
+
+    <script>
+        document.getElementById("signupform").addEventListener("submit",function(event)
+        {
+            event.preventDefault();
+            let uname=document.getElementById("uname").value;
+            let uemail=document.getElementById("uemail").value;
+            let upass=document.getElementById("upass").value;
+            let ucpass=document.getElementById("ucpass").value;
+            console.log(uname,uemail,upass,ucpass);
+
+            let user={uname:uname,uemail:uemail,upass:upass};
+            let userlist=JSON.parse(localStorage.getItem("userlist"))||[];
+            userlist.push(user);
+            console.log(userlist);
+            
+            if(upass===ucpass)
+            {
+                // localStorage.setItem("uname",uname);
+                // localStorage.setItem("uemail",uemail);
+                // localStorage.setItem("upass",upass);
+                localStorage.setItem("userlist",JSON.stringify(userlist));
+
+                alert("Registration successfully done!!!");
+                window.location.href="signin.html";   
+            }
+            else
+            {
+                alert("Password and Confirm password does not match. Try again!!!");
+            }
+            
+        });
+
+    </script>
+</body>
+</html>

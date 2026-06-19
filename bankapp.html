@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank App</title>
+</head>
+<body>
+    <center>
+        <h1>Bank App</h1>
+        <h3 id="uname"></h3>
+        <i id="datetime"></i>
+        <br>
+        <a href="index.html"><button>Logout</button></a>
+        <br>
+        <form>
+            <label>Enter Amount</label>
+            <input type="number" id="amount" required>
+            <br>
+            <h3 id="output"></h3>
+            <br>
+            <input type="button" value="Credit" onclick="credit()">
+            <input type="button" value="Debit" onclick="debit()">
+            <input type="button" value="Show Balance" onclick="show_balance()">
+            <input type="button" value="Clear" onclick="clear1()">
+        </form>
+    </center>
+    <script>
+        // let uname=localStorage.getItem("uname");
+
+        // document.getElementById("uname").innerHTML="Welcome "+uname;
+
+        let currentuser=JSON.parse(localStorage.getItem("currentuser"));
+        console.log(currentuser);
+        
+        document.getElementById("uname").innerHTML="Welcome "+currentuser.uname;
+
+        document.getElementById("datetime").innerText="Login at "+`${new Date().toLocaleTimeString()}`;
+        
+        let balance=0;
+        function clear1()
+        {
+            document.getElementById("amount").innerHTML="";
+            document.getElementById("output").innerHTML="";
+        }
+
+        function show_balance()
+        {
+            document.getElementById("output").innerHTML="Current Balance="+balance;
+        }
+
+        function credit()
+        {
+         let amount=Number(document.getElementById("amount").value);
+         console.log(amount);
+         if(amount>0)
+         {
+            balance=balance+amount;
+            document.getElementById("output").innerHTML="Amount credited successfully";
+         }
+         else
+         {
+            alert("Entered Amount is incorrect... Try again");
+         }  
+        }
+
+        function debit()
+        {
+         let amount=Number(document.getElementById("amount").value);
+         console.log(amount);
+         if(amount>0 && amount<balance)
+         {
+            balance=balance-amount;
+            document.getElementById("output").innerHTML="Amount debited successfully";
+         }
+         else
+         {
+            alert("Entered Amount is incorrect... Try again");
+         }  
+        }
+    </script>
+</body>
+</html>
